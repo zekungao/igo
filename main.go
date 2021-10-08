@@ -17,10 +17,8 @@ func main() {
 		switch state {
 		case src.STATE_BLACK:
 			fmt.Println("it's BLACK's turn")
-			break
 		case src.STATE_WHITE:
 			fmt.Println("it's WHITE's turn")
-			break
 		}
 		fmt.Println("please int x:")
 		fmt.Scanln(&x)
@@ -34,20 +32,16 @@ func main() {
 		}
 
 		if board.Drop(x, y, state) {
-			// board.board[x][y].state = state
 			board.Eat(x, y)
 			switch state {
 			case src.STATE_BLACK:
 				state = src.STATE_WHITE
-				break
 			case src.STATE_WHITE:
 				state = src.STATE_BLACK
-				break
 			}
 		} else {
 			fmt.Println("can not drop here")
 		}
-		// fmt.Println(board.board[x][y].state)
 	}
 
 }

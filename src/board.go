@@ -8,53 +8,6 @@ import (
 const _length int = 19
 const _width int = 19
 
-// type State int
-
-// const (
-// 	STATE_VOID State = iota
-// 	STATE_BLACK
-// 	STATE_WHITE
-// )
-
-// type BanVector int
-
-// const (
-// 	BAN_UP BanVector = iota
-// 	BAN_DOWN
-// 	BAN_LEFT
-// 	BAN_RIGHT
-// 	BAN_VOID
-// )
-
-// type Grid struct {
-// 	x     int
-// 	y     int
-// 	state State
-// }
-
-// func NewGrid(mx int, my int) *Grid {
-// 	return &Grid{x: mx, y: my, state: STATE_VOID}
-// }
-
-// func (b *Grid) SetState(s State) {
-// 	b.state = s
-// }
-
-// func (b *Grid) ClearState() {
-// 	b.state = STATE_VOID
-// }
-
-// func (b *Grid) GetState() State {
-// 	return b.state
-// }
-
-// func (b *Grid) EqualState(s State) bool {
-// 	if b.state == s {
-// 		return true
-// 	}
-// 	return false
-// }
-
 type Board struct {
 	originX int
 	originY int
@@ -74,9 +27,7 @@ func NewBoard() *Board {
 }
 
 func (b *Board) SetGO(x int, y int, state State) {
-	// fmt.Println(b.board[x][y].state)
 	b.board[x][y].SetState(state)
-	// fmt.Println(b.board[x][y].state)
 }
 
 func (b *Board) JudgeDA(x int, y int, originState State, ban BanVector) bool {
@@ -227,15 +178,11 @@ func (b *Board) ShowBoard() string {
 			switch b.board[i][j].GetState() {
 			case STATE_BLACK:
 				buffer.WriteByte('@')
-				break
 			case STATE_WHITE:
 				buffer.WriteByte('O')
-				break
 			case STATE_VOID:
 				buffer.WriteByte('+')
-				break
 			default:
-				break
 			}
 			buffer.WriteString(" ")
 		}
@@ -244,50 +191,3 @@ func (b *Board) ShowBoard() string {
 
 	return buffer.String()
 }
-
-// func main() {
-// 	board := NewBoard()
-// 	exit := false
-// 	state := STATE_BLACK
-// 	x := 0
-// 	y := 0
-
-// 	for !exit {
-// 		fmt.Println(board.ShowBoard())
-// 		switch state {
-// 		case STATE_BLACK:
-// 			fmt.Println("it's BLACK's turn")
-// 			break
-// 		case STATE_WHITE:
-// 			fmt.Println("it's WHITE's turn")
-// 			break
-// 		}
-// 		fmt.Println("please int x:")
-// 		fmt.Scanln(&x)
-// 		x = x - 1
-// 		fmt.Println("please int y:")
-// 		fmt.Scanln(&y)
-// 		y = y - 1
-// 		if x < 0 || x >= _width || y < 0 || y >= _length {
-// 			fmt.Println("wrong input")
-// 			continue
-// 		}
-
-// 		if board.Drop(x, y, state) {
-// 			// board.board[x][y].state = state
-// 			board.Eat(x, y)
-// 			switch state {
-// 			case STATE_BLACK:
-// 				state = STATE_WHITE
-// 				break
-// 			case STATE_WHITE:
-// 				state = STATE_BLACK
-// 				break
-// 			}
-// 		} else {
-// 			fmt.Println("can not drop here")
-// 		}
-// 		// fmt.Println(board.board[x][y].state)
-// 	}
-
-// }
